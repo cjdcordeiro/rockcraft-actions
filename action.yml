@@ -1,0 +1,22 @@
+name: "Build a ROCK"
+description: "Pack an OCI image with Rockcraft"
+inputs:
+  path:
+    description: 'The location of the Rockcraft project. Defaults to the base of the repository'
+    default: '.'
+runs:
+  using: "composite"
+  steps:
+    - name: Setup LXD
+      uses: canonical/setup-lxd@90d76101915da56a42a562ba766b1a77019242fd
+      with:
+        channel: 5.10/stable
+    - name: Install rockcraft from "edge"
+      run: sudo snap install rockcraft --classic --edge
+      shell: bash
+    - name: Run `rockcraft pack`
+      working-directory: ${{ inputs.path }}
+      run: rockcraft pack -v
+      shell: bash
+    
+

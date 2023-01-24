@@ -1,0 +1,16 @@
+name: Test the action
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-action:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./
+      with:
+        path: tests
