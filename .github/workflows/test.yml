@@ -8,9 +8,18 @@ on:
 
 jobs:
   run-action:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-20.04, ubuntu-18.04]
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
     - uses: ./
       with:
         path: tests
+        args: pack --verbosity trace
+    - name: Upload ROCK
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-rock_${{ matrix.os }}
+        path: "test/*.rock"
