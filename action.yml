@@ -7,6 +7,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - shell: bash
+      run: |
+        set -x
+        sudo systemctl enable snapd
     - name: Setup LXD
       uses: canonical/setup-lxd@v0.1.0
       with:
