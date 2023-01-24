@@ -1,0 +1,26 @@
+name: "Build a ROCK"
+description: "Pack an OCI image with Rockcraft"
+inputs:
+  path:
+    description: >
+      The location of the Rockcraft project. 
+      
+      Defaults to the base of the repository.
+    default: '.'
+  rockcraft-args:
+    description: >
+      The arguments and options to pass to the `rockcraft` command.
+
+      By default, the action will build a ROCK with high verbosity. This input
+      can be used to modify that default behavior and instead change the build
+      options or even perform different Rockcraft operations.
+    default: '--verbosity trace'
+outputs:
+  rock:
+    description: 'The file name of the resulting ROCK.'
+runs:
+  using: 'node16'
+  main: '../dist/rockcraft-pack-action/index.js'
+branding:
+  icon: layers
+  color: orange
