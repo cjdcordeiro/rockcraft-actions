@@ -14,12 +14,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-    - uses: ./
+    - name: Build a ROCK
+      uses: ./
       with:
         path: tests
-        args: pack --verbosity trace
     - name: Upload ROCK
       uses: actions/upload-artifact@v3
       with:
         name: test-rock_${{ matrix.os }}
         path: "test/*.rock"
+    - name: Pass arguments to rockcraft
+      uses: ./
+      with:
+        args: init
+    - name: Test a new rockcraft.yaml file has been created
+      run: |
+        cat rockcraft.yaml

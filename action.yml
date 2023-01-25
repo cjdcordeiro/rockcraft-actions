@@ -17,7 +17,7 @@ runs:
     - name: Setup LXD
       uses: canonical/setup-lxd@v0.1.0
       with:
-        channel: 5.10/stable
+        channel: 5.9/stable
     - name: Install rockcraft from "edge"
       run: |
         sudo snap install rockcraft --classic --edge
