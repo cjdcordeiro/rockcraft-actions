@@ -15,15 +15,16 @@ runs:
         set -x
         sudo systemctl enable snapd
     - name: Install rockcraft from "edge"
-      run: |
-        sudo snap install rockcraft --classic --edge
+      run: sudo snap install rockcraft --classic --edge
       shell: bash
     - name: Setup LXD
       uses: canonical/setup-lxd@v0.1.0
       with:
         channel: 5.9/stable
     - name: Ensure LXD is initialized
-      run: lxd init --auto
+      run: |
+        lxd init --auto
+        lxd waitready
       shell: bash
     - name: Run `rockcraft pack`
       working-directory: ${{ inputs.path }}
@@ -32,6 +33,5 @@ runs:
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-        name: log
+        name: rockcraft-log
         path: "/home/runner/.local/state/rockcraft/log/rockcraft-*.log"
-    

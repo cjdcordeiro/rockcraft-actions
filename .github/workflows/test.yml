@@ -22,7 +22,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-rock_${{ matrix.os }}
-        path: "test/*.rock"
+        path: "tests/*.rock"
     - name: Pass arguments to rockcraft
       uses: ./
       with:
