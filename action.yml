@@ -30,8 +30,3 @@ runs:
       working-directory: ${{ inputs.path }}
       run: rockcraft ${{ inputs.args }}
       shell: bash
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: rockcraft-log
-        path: "/home/runner/.local/state/rockcraft/log/rockcraft-*.log"
