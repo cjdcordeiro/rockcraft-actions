@@ -19,7 +19,9 @@ runs:
       with:
         channel: 5.10/stable
     - name: Install rockcraft from "edge"
-      run: sudo snap install rockcraft --classic --edge
+      run: |
+        sudo snap install rockcraft --classic --edge
+        sudo lxd init --auto
       shell: bash
     - name: Run `rockcraft pack`
       working-directory: ${{ inputs.path }}
