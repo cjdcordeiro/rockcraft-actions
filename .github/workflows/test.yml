@@ -22,10 +22,14 @@ jobs:
       uses: ./rockcraft/pack
       with:
         path: tests
-    # - name: Build a ROCK
-    #   uses: cjdcordeiro/rockcraft-actions/rockcraft/pack@latest
-    #   with:
-    #     path: tests
+    - name: Build a ROCK
+      uses: cjdcordeiro/rockcraft-actions/rockcraft/pack@latest
+      with:
+        path: tests
+    - name: Build a ROCK
+      uses: cjdcordeiro/rockcraft-actions/pack@latest
+      with:
+        path: tests
     - name: Upload ROCK
       uses: actions/upload-artifact@v3
       with:
