@@ -1,5 +1,2 @@
 # Dependency directory
 node_modules
-
-# Ignore files from npm build
-lib/**/*
